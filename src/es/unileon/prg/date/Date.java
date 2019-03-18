@@ -14,13 +14,53 @@ public class Date {
 		} else {
 			this.month = month;
 		}
-		//TODO falta comprobar el dia
-		this.day = day;
+		if(day<1){
+		throw new DateException("Dia "+day+ " no valido, solo se pueden dias mayores que 1.");
+		}
+		else{
+			switch(this.month){
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+			case 12:
+				if(day>31){
+				throw new DateException("Dia "+day+" no valido en este mes.");
+				}
+				else{
+				this.day=day;
+				}
+			break;
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+				if(day>30){
+				throw new DateException("Dia "+day+" no valido en este mes.");
+				}
+				else{
+				this.day=day;
+				}
+			break;
+			case 2:
+				if(day>28){
+				throw new DateException("Dia "+day+" no valido en el mes de febrero.");
+				}
+				else{
+				this.day=day;
+				}
+			break;
 	}
 
 	@Override
 	public String toString() {
 		return this.day + "/" + this.month + "/" + this.year;
+	}
+	
+	public isSameYearIf(int year){
+		
 	}
 
 }
