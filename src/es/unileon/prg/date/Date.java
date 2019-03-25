@@ -7,13 +7,17 @@ public class Date {
 	private int _year;
 
 	public Date(int day, int month, int year) throws DateException{
-		this.year = year;
+		this._year = year;
 		if (month < 1 || month > 12) {
 			throw new DateException("Mes " + month + " no valido" +
 					" Valores posibles entre 1 y 12.");
 		} else {
-			this.month = month;
+			this._month = month;
 		}
+		
+		if( isDayOfMonthRight()==true){
+			this._day=day;
+		}else throw new DateException("Dia "+day+" no valido en el mes "+this._month+".");
 		
 	}
 	
@@ -30,6 +34,11 @@ public class Date {
 	
 	public int getMonth(){
 		return this._month;
+	}
+	
+	public int getMonths(){
+		int months=this._month;
+		return months;
 	}
 	
 	public int getDay(){
@@ -70,7 +79,7 @@ public class Date {
 		if( (this._year==date.getYear() ) && (this._day==date.getDay() ) && (this._month==date.getMonth() ) ){
 			retorno=true;
 		}else retorno=false;
-	return verdadero;
+	return retorno;
 	}
 	
 	public String nameOfMonth(){
@@ -116,7 +125,7 @@ public class Date {
 	}
 
 
-	public isDayOfMonthRight(){
+	public isDayOfMonthRight() throws DateException{
 		boolean retorno=false;
 		switch(this._month){
 			case 1:
@@ -213,6 +222,134 @@ public class Date {
 		break;
 		}
 		return season;
+	}
+	
+	public String monthsLeft(){
+	StringBuffer month=new StringBuffer();	
+		for(int i=getMonths();i<=12;i++){
+			month.append( nameOfMonth() + "\n");
+			this._month=this._month+1;
+		}
+	return month.toString();
+	}
+	
+	
+	public int getMonthDayLeft(){
+			
+		if(this._month==1||this._month==3||this._month==5||this._month==7||this._month==8||this._month==10||this._month==12){
+			for(int i=this._day;i<=31;i++){
+				System.out.print(i+" ");
+			}
+		}
+		else if(this._month==4||this._month==6||this._month==9||this._month==11){
+			for(int i=this._day;i<=30;i++){
+				System.out.print(i+" ");
+			}
+		}
+		else if(this._month==2){
+			for(int i=this._day;i<=28;i++){
+				System.out.print(i+" ");
+			}
+		}
+	return 0;
+	}
+	public int getMonthsSameDate(){
+		for(int i=1;i<=12;i++){
+			if(this._month==1||this._month==3||this._month==5||this._month==7||this._month==8||this._month==10||this._month==12){
+				switch(i){
+					case 1:
+					System.out.println("enero");
+					break;
+					case 3:
+					System.out.println("marzo");
+					break;
+					case 5:
+					System.out.println("mayo");
+					break;
+					case 7:
+					System.out.println("julio");
+					break;
+					case 8:
+					System.out.println("agosto");
+					break;
+					case 10:
+					System.out.println("octubre");
+					break;
+					case 12:
+					System.out.println("diciembre");
+					break;
+				}
+			}
+		else if(this._month==4||this._month==6||this._month==9||this._month==11){
+			switch(i){
+			case 4:
+			System.out.println("abril");
+			break;
+			case 6:
+			System.out.println("junio");
+			break;
+			case 9:
+			System.out.println("septiembre");
+			break;
+			case 11:
+			System.out.println("noviembre");
+			}
+		}
+		else if(this._month==2){
+			switch(i){
+			case 2:
+			System.out.println("febrero");
+			break;
+			}
+		}
+		}
+	return 0;	
+	}
+	
+	public int daysPast(){
+		int suma=0;
+		int mes_31=31;	
+		int mes_30=30;
+		int mes_28=28;
+		int numDias=0;
+			switch(this._month){
+				case 1:
+				suma=this._day;
+				break;
+				case 2:
+				suma=this._day+mes_31;
+				break;
+				case 3:
+				suma=this._day+mes_31+mes_28;
+				break;
+				case 4:
+				suma=this._day+mes_31*2+mes_28;
+				break;
+				case 5:
+				suma=this._day+mes_31*2+mes_28+mes_30;
+				break;
+				case 6:
+				suma=this._day+mes_31*3+mes_28+mes_30;
+				break;
+				case 7:
+				suma=this._day+mes_31*3+mes_28+mes_30*2;
+				case 8:	
+				suma=this._day+mes_31*4+mes_28+mes_30*2;
+				case 9:
+				suma=this._day+mes_31*4+mes_28+mes_30*3;
+				break;
+				case 10:
+				suma=this._day+mes_31*5+mes_28+mes_30*3;
+				break;
+				case 11:
+				suma=this._day+mes_31*5+mes_28+mes_30*4;
+				case 12:
+				suma=this._day+mes_31*6+mes_28+mes_30*4;
+				break;
+			}
+		return suma;
+			
+		
 	}
 	
 	
