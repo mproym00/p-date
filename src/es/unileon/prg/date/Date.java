@@ -115,6 +115,105 @@ public class Date {
 		return name;
 	}
 
+
+	public isDayOfMonthRight(){
+		boolean retorno=false;
+		switch(this._month){
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+			case 12:
+				if(day>31){
+					throw new DateException("dia "+day+" no valido en este mes");
+					retorno=false;
+				}
+				else{
+					retorno=true;
+				}
+			break;
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+				if(day>30){
+					throw new DateException("dia "+day+" no valido en este mes");
+					retorno=false;
+				}
+				else{
+					retorno=true;
+				}
+			break;
+			case 2:
+				if(day>28){
+					throw new DateException("dia "+day+" no valido en el mes de febrero");
+					retorno=false;
+				}
+				else{
+					retorno=true;
+				}
+			break;
+			
+		}
+		return retorno;	
+	}
+	
+	
+	public String seasonOfMonth(){
+		String season=" ";
+		switch(this._month){
+			case 1:
+			case 2:
+			season="invierno";
+			break;
+			case 3:
+				if(this._day>1 && this._day<=20){
+					season="invierno";
+				}else if(this._day>20&&this._day<=31){
+					season="primavera";
+				 }
+			break;
+			case 4:
+			case 5:
+			season="primavera";
+			break;
+			case 6:
+			if(this._day>1&&this._day<=20){
+				season="primavera";
+			}
+			else if(this._day>20&&this._day<=30){
+				season="verano";
+			}
+		break;
+		case 7:
+		case 8:
+			season="verano";
+		break;
+		case 9:
+			if(this._day>1&&this._day<=20){
+				season="verano";
+			}
+			else if(this._day>20&&this._day<=30){
+				season="otoño";
+			}
+		break;
+		case 10:
+		case 11:
+			season="otoño";
+		break;
+		case 12:
+			if(this._day>1&&this._day<=20){
+				season="otoño";
+			}
+			else if(this._day>20&&this._day<=31){
+				season="invierno";
+			}
+		break;
+		}
+		return season;
+	}
 	
 	
 	
